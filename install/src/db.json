@@ -1,0 +1,25 @@
+{
+  "rooms": [
+    {
+      "RoomID": 1,
+      "RoomNumber": "101",
+      "RoomType": "Single",
+      "Status": "Available",
+      "Price": "$100"
+    },
+    {
+      "RoomID": 2,
+      "RoomNumber": "102",
+      "RoomType": "Double",
+      "Status": "Occupied",
+      "Price": "$150"
+    },
+    {
+      "RoomID": 3,
+      "RoomNumber": "103",
+      "RoomType": "Suite",
+      "Status": "Available",
+      "Price": "$250"
+    }
+  ]
+}

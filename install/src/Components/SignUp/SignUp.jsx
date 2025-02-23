@@ -39,13 +39,12 @@ const SignupForm = () => {
         return; 
       }
 
-      // Sign up the user if email doesn't exist
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       localStorage.setItem("token", user.accessToken);
       console.log(user, 'my new user');
 
-      // Save user details in Firestore
+    
       await setDoc(doc(db, role, user.uid), {
         email: user.email,
         uid: user.uid,
@@ -181,7 +180,7 @@ const styles = {
   heading: {
     textAlign: 'center',
     marginBottom: '30px',
-    color: '#333',
+    color: '#00796b',
     fontWeight: '600',
     fontSize: '25px',
   },

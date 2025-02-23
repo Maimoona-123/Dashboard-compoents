@@ -1,0 +1,63 @@
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #f4f4f9;
+    color: #f4f4f9;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  h1 {
+    margin: 0;
+  }
+  
+  .inventory-page {
+    width: 80%;
+    margin: 30px auto;
+  }
+  
+  .description {
+    margin: 20px 0;
+  }
+  
+  .description p {
+    font-size: 1.1em;
+  }
+  
+  .inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: white;
+  }
+  
+  .inventory-table th,
+  .inventory-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .inventory-table th {
+    background-color: #004d40;
+    color: white;
+  }
+  
+  .add-item-btn {
+    background-color: #004d40;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: inline-block;
+  }
+  
+  

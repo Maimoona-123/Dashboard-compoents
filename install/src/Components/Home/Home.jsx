@@ -3,7 +3,13 @@ import React from 'react';
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setUser } from '../Store/Slice/UserSlice'; // Import action from the slice
+import { setUser } from '../Store/Slice/UserSlice';
+import './Home.css'
+import AboutUsPage from '../About/About';
+import Booking from '../Booking/BOoking'
+import Footer from '../Footer/Footer';
+
+
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -19,10 +25,17 @@ const HomePage = () => {
   };
 
   return (
+  <>
     <div style={styles.container}>
       {/* Top Navbar */}
       <div style={styles.navbar}>
-        <h3 style={styles.navbarText}>App Name</h3>
+        <h3 className='heading'>Hotel Managmnet system</h3>
+        <ul className='list'>
+          <li>Home</li>
+          <li>About</li>
+          <li>Services</li>
+          <li>Booking</li>
+        </ul>
         <div style={styles.navButtons}>
           <Button
             variant="contained"
@@ -44,11 +57,17 @@ const HomePage = () => {
       {/* Main content */}
       <div style={styles.mainContent}>
         <div style={styles.centeredTextContainer}>
-          <h1 style={styles.headingText}>Welcome to Our App!</h1>
-          <p style={styles.descriptionText}>Click the buttons above to Log in or Sign Up and get started.</p>
+          <h1 style={styles.headingText}>Welcome to our Hotel Managment Website!!...</h1>
+          <p style={styles.descriptionText}>Welcome to hotel Managment... ! Our customer service team is here to help you with any questions or concerns you may have. We look forward to providing you with the best experience possible. Please let us know if we can do anything to make your stay even better!.</p>
+          <button className='btn'>Explore More</button>
+          <button className='btn'>Reserve room</button>
         </div>
       </div>
     </div>
+<AboutUsPage/>
+<Booking />
+<Footer/>
+</>
   );
 };
 

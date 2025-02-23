@@ -8,28 +8,38 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button, Accordion, AccordionSummary, AccordionDetails, MenuItem } from '@mui/material';
-import { FaShoppingCart, FaBox, FaTags, FaUsers, FaFileAlt, FaCog } from 'react-icons/fa'; // e-commerce icons
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'; // For the accordion arrow icon
+import { Button } from '@mui/material';
+import { GrHome } from 'react-icons/gr';
+import { TbBrandBooking } from 'react-icons/tb';
+import { MdMiscellaneousServices, MdOutlineInventory, MdPayments } from 'react-icons/md';
+import { VscReport } from 'react-icons/vsc';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { FaUser } from 'react-icons/fa';
+import { FaBuildingUser } from 'react-icons/fa6';
+import UserProfile from '../User/User';
+import BookingForm from '../Booking/BOoking';
+import Customer from '../Customer/Customer';
+import RoomList from '../Room/Room';
+import PaymentPage from '../Payment/Payment';
+import ServicesPage from '../Services/Services';
+import InventoryPage from '../Inventory/Inventory';
+import ReportPage from '../Report/Report';
 
 // Define drawer width
 const drawerWidth = 240;
 
 export default function PermanentDrawerLeft() {
   const navigate = useNavigate();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleAccordionChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
-
+  
   const logOut = () => {
     localStorage.clear();
     navigate("/");
+  };
+
+  const handleNavigation = (route) => {
+    navigate(route);
   };
 
   return (
@@ -38,7 +48,7 @@ export default function PermanentDrawerLeft() {
       <AppBar
         position="fixed"
         sx={{
-          width: "100%",  // Full width
+          width: "100%", 
           zIndex: (theme) => theme.zIndex.drawer + 1,
           color: "white",
           background: "linear-gradient(to right, #00796b, lightblue )"
@@ -67,123 +77,62 @@ export default function PermanentDrawerLeft() {
       >
         <Toolbar />
         <Divider />
-        <List>
-          {/* Products Accordion */}
-          <Accordion expanded={expanded === 'panel1'} onChange={handleAccordionChange('panel1')}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1d-content"
-              id="panel1d-header"
-            >
-              <ListItemIcon sx={{ color: '#00796b' }}>
-                <FaBox />
-              </ListItemIcon>
-              <ListItemText sx={{ color: '#00796b' }} primary="Products" />
-            </AccordionSummary>
-            <AccordionDetails>
-              <List>
-                <MenuItem component={Link} to="/add-product" sx={{ color: '#00796b' }}>Add Product</MenuItem>
-                <MenuItem component={Link} to="/product-list" sx={{ color: '#00796b' }}>Product List</MenuItem>
-              </List>
-            </AccordionDetails>
-          </Accordion>
+        <List sx={{marginTop: 2}}>
+          {/* User Section */}
+          <ListItem button onClick={() => handleNavigation('/user')}>
+            <ListItemIcon sx={{ color: '#00796b', fontSize: '24px' }}>
+              <FaUser />
+            </ListItemIcon>
+            <ListItemText sx={{ color: '#00796b' }} primary="User" />
+          </ListItem>
 
-          {/* Categories Accordion */}
-          <Accordion expanded={expanded === 'panel2'} onChange={handleAccordionChange('panel2')}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2d-content"
-              id="panel2d-header"
-            >
-              <ListItemIcon sx={{ color: '#00796b' }}>
-                <FaTags />
-              </ListItemIcon>
-              <ListItemText sx={{ color: '#00796b' }} primary="Categories" />
-            </AccordionSummary>
-            <AccordionDetails>
-              <List>
-                <MenuItem component={Link} to="/add-category" sx={{ color: '#00796b' }}>Add Category</MenuItem>
-                <MenuItem component={Link} to="/category-list" sx={{ color: '#00796b' }}>Category List</MenuItem>
-              </List>
-            </AccordionDetails>
-          </Accordion>
+          {/* Customer Section */}
+          <ListItem button onClick={() => handleNavigation('/customer')}>
+            <ListItemIcon sx={{ color: '#00796b', fontSize: '24px' }}>
+              <FaBuildingUser />
+            </ListItemIcon>
+            <ListItemText sx={{ color: '#00796b' }} primary="Customer" />
+          </ListItem>
 
-          {/* Orders Accordion */}
-          <Accordion expanded={expanded === 'panel3'} onChange={handleAccordionChange('panel3')}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel3d-content"
-              id="panel3d-header"
-            >
-              <ListItemIcon sx={{ color: '#00796b' }}>
-                <FaShoppingCart />
-              </ListItemIcon>
-              <ListItemText sx={{ color: '#00796b' }} primary="Orders" />
-            </AccordionSummary>
-            <AccordionDetails>
-              <List>
-                <MenuItem component={Link} to="/order-list" sx={{ color: '#00796b' }}>Order List</MenuItem>
-              </List>
-            </AccordionDetails>
-          </Accordion>
+          {/* Room Section */}
+          <ListItem button onClick={() => handleNavigation('/room')}>
+            <ListItemIcon sx={{ color: '#00796b', fontSize: '24px' }}>
+              <GrHome />
+            </ListItemIcon>
+            <ListItemText sx={{ color: '#00796b' }} primary="Room" />
+          </ListItem>
 
-          {/* Customers Accordion */}
-          <Accordion expanded={expanded === 'panel4'} onChange={handleAccordionChange('panel4')}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel4d-content"
-              id="panel4d-header"
-            >
-              <ListItemIcon sx={{ color: '#00796b' }}>
-                <FaUsers />
-              </ListItemIcon>
-              <ListItemText sx={{ color: '#00796b' }} primary="Customers" />
-            </AccordionSummary>
-            <AccordionDetails>
-              <List>
-                <MenuItem component={Link} to="/customer-list" sx={{ color: '#00796b' }}>Customer List</MenuItem>
-              </List>
-            </AccordionDetails>
-          </Accordion>
+          {/* Payment Section */}
+          <ListItem button onClick={() => handleNavigation('/payment')}>
+            <ListItemIcon sx={{ color: '#00796b', fontSize: '24px' }}>
+              <MdPayments />
+            </ListItemIcon>
+            <ListItemText sx={{ color: '#00796b' }} primary="Payment" />
+          </ListItem>
 
-          {/* Reports Accordion */}
-          <Accordion expanded={expanded === 'panel5'} onChange={handleAccordionChange('panel5')}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel5d-content"
-              id="panel5d-header"
-            >
-              <ListItemIcon sx={{ color: '#00796b' }}>
-                <FaFileAlt />
-              </ListItemIcon>
-              <ListItemText sx={{ color: '#00796b' }} primary="Reports" />
-            </AccordionSummary>
-            <AccordionDetails>
-              <List>
-                <MenuItem component={Link} to="/sales-report" sx={{ color: '#00796b' }}>Sales Report</MenuItem>
-              </List>
-            </AccordionDetails>
-          </Accordion>
+          {/* Service Section */}
+          <ListItem button onClick={() => handleNavigation('/service')}>
+            <ListItemIcon sx={{ color: '#00796b', fontSize: '24px' }}>
+              <MdMiscellaneousServices />
+            </ListItemIcon>
+            <ListItemText sx={{ color: '#00796b' }} primary="Service" />
+          </ListItem>
 
-          {/* Settings Accordion */}
-          <Accordion expanded={expanded === 'panel6'} onChange={handleAccordionChange('panel6')}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel6d-content"
-              id="panel6d-header"
-            >
-              <ListItemIcon sx={{ color: '#00796b' }}>
-                <FaCog />
-              </ListItemIcon>
-              <ListItemText sx={{ color: '#00796b' }} primary="Settings" />
-            </AccordionSummary>
-            <AccordionDetails>
-              <List>
-                <MenuItem component={Link} to="/account-settings" sx={{ color: '#00796b' }}>Account Settings</MenuItem>
-                <MenuItem component={Link} to="/site-settings" sx={{ color: '#00796b' }}>Site Settings</MenuItem>
-              </List>
-            </AccordionDetails>
-          </Accordion>
+          {/* Inventory Section */}
+          <ListItem button onClick={() => handleNavigation('/inventory')}>
+            <ListItemIcon sx={{ color: '#00796b', fontSize: '24px' }}>
+              <MdOutlineInventory />
+            </ListItemIcon>
+            <ListItemText sx={{ color: '#00796b' }} primary="Inventory" />
+          </ListItem>
+
+          {/* Report Section */}
+          <ListItem button onClick={() => handleNavigation('/report')}>
+            <ListItemIcon sx={{ color: '#00796b', fontSize: '24px' }}>
+              <VscReport />
+            </ListItemIcon>
+            <ListItemText sx={{ color: '#00796b' }} primary="Report" />
+          </ListItem>
         </List>
         <Divider />
       </Drawer>
@@ -192,7 +141,16 @@ export default function PermanentDrawerLeft() {
         sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
       >
         <Toolbar />
-        {/* Your content goes here */}
+        <Routes>
+          <Route path='/user' element={<UserProfile />} />
+          <Route path='/customer' element={<Customer />} />
+          <Route path='/room' element={<RoomList />} />
+          <Route path='/payment' element={<PaymentPage />} />
+          <Route path='/service' element={<ServicesPage />} />
+          <Route path='/inventory' element={<InventoryPage />} />
+          <Route path='/report' element={<ReportPage />} />
+          <Route path="/" element={<BookingForm />} />  {/* Default route */}
+        </Routes>
       </Box>
     </Box>
   );
